@@ -78,15 +78,15 @@ IoFiltrado = async(valor) => {
     ano = data.getFullYear();
     dataHoje = "'"+ano+"-"+mes+"-"+dia+"'";
     dataFiltro = "'"+valor.year+"-"+valor.month+"-0'";
-    sql = `SELECT DISTINCT m.date, (select SUM(value) from moviment WHERE date = m.date AND type = 'input') AS input, (select sum(value) from moviment WHERE date = m.date AND type = 'output') AS output FROM moviment m where date between ${dataFiltro} and ${dataHoje}`;
+    sql = `SELECT DISTINCT m.date, (select SUM(value) from moviment WHERE date = m.date AND type = 'input') AS input, (select sum(value) from moviment WHERE date = m.date AND type = 'output') AS output FROM moviment m where date between ${dataFiltro} and ${dataHoje} order by date asc`;
     valores = await mysql.query(sql);
     return valores;
 }
 
 IoFiltradoDuasDatas = async(valor) => {
     data1 = "'"+valor.year+"-"+valor.month+"-0'";
-    data2 = "'"+valor.year2+"-"+valor.month2+"-0'";
-    sql = `SELECT DISTINCT m.date, (select SUM(value) from moviment WHERE date = m.date AND type = 'input') AS input, (select sum(value) from moviment WHERE date = m.date AND type = 'output') AS output FROM moviment m where date between ${data1} and ${data2}`;
+    data2 = "'"+valor.ano2+"-"+valor.mes2+"-0'";
+    sql = `SELECT DISTINCT m.date, (select SUM(value) from moviment WHERE date = m.date AND type = 'input') AS input, (select sum(value) from moviment WHERE date = m.date AND type = 'output') AS output FROM moviment m where date between ${data1} and ${data2} order by date asc`;
     valores = await mysql.query(sql);
     return valores;
 }

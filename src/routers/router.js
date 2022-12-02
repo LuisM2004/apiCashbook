@@ -105,7 +105,7 @@ router.get("/moviments/io/:year/:month", async (req, res) => {
     res.status(200).send(resp);
 });
 
-router.get("/moviments/io/:year/:month/:month2/:year2", async (req, res) => {
+router.get("/moviments/io/:year/:month/:mes2/:ano2", async (req, res) => {
     auth = userController.verifyJWT(req.headers["x-access-token"]);
     if (auth.idUser) {
       if (req.headers.iduser == auth.idUser) {
